@@ -75,7 +75,10 @@ public Response getAllLogements()
     }
 
 
-    public Response updateLogement(Logement updatedLogement, int reference) {
+    @PUT
+    @Consumes(MediaType.APPLICATION_XML)
+    @Path("{ref}")
+    public Response updateLogement(Logement updatedLogement,@PathParam("ref") int reference) {
 
 
         if (logementMetier.updateLogement(reference,updatedLogement)) {
