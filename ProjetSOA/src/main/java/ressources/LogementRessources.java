@@ -89,7 +89,9 @@ public Response getAllLogements()
     }
 
 
-        public  Response deleteLogement(int reference){
+    @DELETE
+    @Path("{ref}")
+        public  Response deleteLogement(@PathParam("ref") int reference){
            if(logementMetier.deleteLogement(reference))
                     return Response.status(Status.OK).build();
 
