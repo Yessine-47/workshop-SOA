@@ -26,11 +26,32 @@ public class LogementRessources {
 
 @GET
 @Produces(MediaType.APPLICATION_JSON)
-public Response getAllLogements(){
+@Path("getall")
+public Response getAllLogements()
+    {
         if (logementMetier.getLogements().size() != 0)
             return Response.status(Status.OK).entity(logementMetier.getLogements()).build();
         return Response.status(Status.NOT_FOUND).entity("la liste est vide .").build();
     }
+
+
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLogementsByDelegation(@QueryParam("delegation") String delegation) {
+        List<Logement> liste=new ArrayList<Logement>();
+        if(delegation != null) {
+            liste = logementMetier.getLogementsByDeleguation(delegation);
+            return  Response.status(Status.OK).entity(liste).build();
+        } else {
+            return Response.status(Status.NOT_FOUND).build();
+        }
+    }
+
+
+
+
 
 
 
