@@ -17,11 +17,15 @@ public class LogementRessources {
 
 @POST
 @Consumes(MediaType.APPLICATION_XML)
+@Produces(MediaType.APPLICATION_JSON)
     public Response addLogement(Logement l) {
      if(logementMetier.addLogement(l))
-         return  Response.status(Status.CREATED).build();
+         return  Response.status(Status.CREATED).entity(logementMetier.getLogements()).build();
      return  Response.status(Status.NOT_FOUND).build();
     }
+
+
+
 
 
 @GET
